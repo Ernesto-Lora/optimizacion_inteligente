@@ -23,9 +23,14 @@ def golden_section(a,b,epsilon,f):
     bw = 1
     lw = bw-aw
     k=0
+    w1 = aw+0.618*lw
+    w2=bw-0.618*lw
+    f1 = transformed_function(w1,a,b,f)
+    f2 = transformed_function(w2,a,b,f)
     while(lw>=epsilon):
         w1 = aw+0.618*lw
         w2=bw-0.618*lw
+        print(w1,w2)
         if (transformed_function(w1,a,b,f) < transformed_function(w2,a,b,f)):
             aw = w2
             custom_print(aw,bw,k)
