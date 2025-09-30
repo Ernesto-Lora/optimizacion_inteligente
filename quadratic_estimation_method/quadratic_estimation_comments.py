@@ -16,6 +16,8 @@ def quadratic_estimation(x1,delta,tol1,tol2,f):
 
     k = 1
     x2 = x1 + delta
+    # xs =  np.array([x1, x2, 0])
+    # funs = np.array([f(x1), f(x2), 0])
     if f(x1) > f(x2):
         x3 = x1+2*delta
     else:
@@ -25,6 +27,7 @@ def quadratic_estimation(x1,delta,tol1,tol2,f):
         x3 = dummy + delta
 
     xs =  np.array([x1, x2, x3], dtype=float)
+    #print(xs)
     funs = f(xs) 
 
     min_index = np.argmin(funs)
@@ -38,13 +41,19 @@ def quadratic_estimation(x1,delta,tol1,tol2,f):
     print(f"|x_min-x_test|: {abs(x_min - x_test):.6f}")
     print("-" * 40)
     while(not(abs(f_min - f_test) <= tol1 and abs(x_min-x_test) <= tol2)):
+    #for i in range(10):
         all_xs = np.append(xs, x_test)
+        #print(all_xs)
         all_fs = np.append(funs, f_test)
+        #print(all_fs)
 
         # A track of the indexes after reordering from the short to the largest
         order = np.argsort(all_xs)  
         all_xs_sorted = all_xs[order] #sorted xs
         all_fs_sorted = all_fs[order] # Functions correspoding to the sorted xs
+        #print("sorted ->")
+        #print(all_xs_sorted)
+        #print(all_fs_sorted)
         
         new_min_index = np.argmin(all_fs_sorted)
 
@@ -80,9 +89,10 @@ def quadratic_estimation(x1,delta,tol1,tol2,f):
     return x_min
 
 if __name__ == "__main__":
-    x1 = float(input('Enter the value of "x1": '))
-    delta = float(input('Enter the step "delta": '))
-    tol1 = float(input('Enter the tolerance "tol1": '))
-    tol2 = float(input('Enter the tolerance "tol2": '))
+    # x1 = float(input('Enter the value of "x1": '))
+    # tol1 = float(input('Enter the tolerance "tol1": '))
+    # tol2 = float(input('Enter the tolerance "tol2": '))
+    # delta = float(input('Enter the step "delta": '))
 
-    quadratic_estimation(x1 = x1,delta = delta,tol1=tol1,tol2=tol2,f = f)
+    # quadratic_estimation(x1 = x1,delta = delta,tol1=tol1,tol2=tol2,f = f)
+    quadratic_estimation(x1 = 1,delta = 1,tol1=1e-3,tol2=1e-3,f = f)
