@@ -14,9 +14,9 @@ def bisection_method(a,b, epsilon, delta, f):
     derivative_a = first_derivative(f1 = f(a+delta), f2 = f(a-delta), delta=delta)
     derivative_b = first_derivative(f1 = f(b+delta), f2 = f(b-delta), delta=delta)
 
-    if not(derivative_a<0 and derivative_b>0):
-        print("Choose another inverval")
-        return
+    # if not(derivative_a<0 and derivative_b>0):
+    #     print("Choose another inverval")
+    #     return
     k = 1
     while(True): # Do-While implementation
         z = (a+b)/2
@@ -40,8 +40,9 @@ def bisection_method(a,b, epsilon, delta, f):
     return a,b
 
 if __name__ == "__main__":
-    bisection_method(a=-2,b=10,epsilon=1e-3,delta=1e-3,f=f)
-    # x0 = float(input('Enter the value of "x0": '))
-    # epsilon = float(input('Enter tolerance "epsilon": '))
-    # delta = float(input('Enter delta : '))
-    # newthon_raphson(x0=x0, epsilon=epsilon, delta=delta,f=f)
+    
+    a = float(input('Enter the left bound "a": '))
+    b = float(input('Enter the right bound "b": '))
+    epsilon = float(input('Enter tolerance "epsilon": '))
+    delta = float(input('Enter delta : '))
+    bisection_method(a=a,b=b,epsilon=epsilon,delta=delta,f=f)
