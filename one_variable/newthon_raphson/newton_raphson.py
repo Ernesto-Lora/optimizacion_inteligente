@@ -1,6 +1,9 @@
 def f(x):
     return x**2 +54/x
 
+def f2(x):
+    return x**4 -3*x**3+2
+
 def first_derivative(f1,f3,delta):
     return (f1-f3)/(2*delta)
 
@@ -16,10 +19,12 @@ def newthon_raphson(x0,epsilon, delta, f):
     f1 = f(x0+delta)
     f3 = f(x0-delta)
     derivative_f = first_derivative(f1 = f1, f3 = f3, delta=delta)
+    print(f"fp {derivative_f}")
     
     while(abs(derivative_f)>epsilon):
         f2 = f(x0)
         second_derivative_f = second_derivative(f1=f1,f2=f2,f3=f3,delta=delta)
+        print(f"fpp {second_derivative_f}")
 
         #Find the new value 
         x_new = x0 -derivative_f/second_derivative_f
@@ -29,6 +34,7 @@ def newthon_raphson(x0,epsilon, delta, f):
         f1 = f(x_new+delta)
         f3 = f(x_new-delta)
         derivative_f = first_derivative(f1 = f1, f3 = f3, delta=delta)
+        print(f"fp {derivative_f}")
 
         x0 = x_new
         #while()
@@ -38,7 +44,4 @@ def newthon_raphson(x0,epsilon, delta, f):
     return x0
 
 if __name__ == "__main__":
-    x0 = float(input('Enter the value of "x0": '))
-    epsilon = float(input('Enter tolerance "epsilon": '))
-    delta = float(input('Enter delta : '))
-    newthon_raphson(x0=x0, epsilon=epsilon, delta=delta,f=f)
+    newthon_raphson(x0=1, epsilon=0.001, delta=1e-3,f=f2)
